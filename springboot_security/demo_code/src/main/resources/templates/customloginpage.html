@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Demo Login</title>
+</head>
+<body align="center">
+<h2>Custom Login Page</h2>
+<br><br>
+<form action="#" th:action="@{/customloginurl}" method="POST">
+
+<!-- spring adds error parameter into url and returns to login page for wrong login -->
+<div th:if="${param.error}">
+<span style="color:red">Wrong username and password combination</span><br><br>
+</div>
+
+<!-- spring adds logout parameter into url and returns to login page after logout process -->
+<div th:if="${param.logout}">
+<span style="color:red">You have been logged out</span><br><br>
+</div>
+
+Username: <input name="username"/><br><br>
+Password: <input type="password" name="password"/><br><br>
+<input type="submit" value="Login"/>
+</form>
+</body>
+</html>

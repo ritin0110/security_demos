@@ -1,0 +1,26 @@
+CREATE TABLE `custom_users` (
+  `user_id` varchar(50) NOT NULL,
+  `security_key` varchar(100) NOT NULL,
+  `active` tinyint DEFAULT NULL,
+  PRIMARY KEY (`user_id`)
+);
+
+INSERT INTO custom_users (user_id,security_key,active) VALUES
+	 ('demoempdbc','{noop}abc123',1),
+	 ('demohrdbc','{bcrypt}$2a$12$GUTW7HWLSOj.lO1CuLVKBeLBLEq.YCohtsDSVuxINTjoi6dzV6es6',1),
+	 ('demomandbc','{noop}abc123',1);
+
+
+CREATE TABLE `custom_authorities` (
+  `user_id` varchar(50) NOT NULL,
+  `role_id` varchar(50) NOT NULL,
+  PRIMARY KEY (`user_id`,`role_id`),
+  CONSTRAINT `custom_authorities_users_FK` FOREIGN KEY (`user_id`) REFERENCES `custom_users` (`user_id`)
+);
+
+INSERT INTO custom_authorities (user_id,role_id) VALUES
+	 ('demoempdbc','ROLE_EMPLOYEE'),
+	 ('demohrdbc','ROLE_EMPLOYEE'),
+	 ('demohrdbc','ROLE_HR'),
+	 ('demomandbc','ROLE_EMPLOYEE'),
+	 ('demomandbc','ROLE_MANAGER');

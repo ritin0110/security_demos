@@ -1,0 +1,26 @@
+CREATE TABLE `users` (
+  `username` varchar(50) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `enabled` tinyint DEFAULT NULL,
+  PRIMARY KEY (`username`)
+);
+
+INSERT INTO users (username,password,enabled) VALUES
+	 ('demoempdb','{noop}abc123',1),
+	 ('demohrdb','{bcrypt}$2a$12$GUTW7HWLSOj.lO1CuLVKBeLBLEq.YCohtsDSVuxINTjoi6dzV6es6',1),
+	 ('demomandb','{noop}abc123',1);
+
+
+CREATE TABLE `authorities` (
+  `username` varchar(50) NOT NULL,
+  `authority` varchar(50) NOT NULL,
+  PRIMARY KEY (`username`,`authority`),
+  CONSTRAINT `authorities_users_FK` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
+);
+
+INSERT INTO authorities (username,authority) VALUES
+	 ('demoempdb','ROLE_EMPLOYEE'),
+	 ('demohrdb','ROLE_EMPLOYEE'),
+	 ('demohrdb','ROLE_HR'),
+	 ('demomandb','ROLE_EMPLOYEE'),
+	 ('demomandb','ROLE_MANAGER');

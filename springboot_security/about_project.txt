@@ -1,0 +1,17 @@
+This Demo covers Authentication, Authorization, Role based page access
+
+Covered in code:-
+-- how to use inmemory to setup springboot security
+
+-- changed inmemory to mysql usage for storing user, pwds and roles
+
+-- how to use own custom tables (still required in springboot format) to be used by springboot security framework
+
+-- finally, how to use random tables using hibernate queries to be used by springboot security framework
+
+
+Additional stuff:-
+-- logout feature
+-- custom login page
+-- custom error page
+-- use of bcrypt for encyrpting passwords 
